@@ -1,0 +1,10 @@
+
+string multiplyStrings(string a , string b ){
+    //Write your code here
+   
+    return to_string(stoi(a)*stoi(b));
+}
+
+
+
+

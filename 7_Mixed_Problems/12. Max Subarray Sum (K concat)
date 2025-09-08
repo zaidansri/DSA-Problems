@@ -1,0 +1,30 @@
+#include <bits/stdc++.h> 
+long long maxSubSumKConcat(vector<int> &arr, int n, int k)
+{
+	// Write your code here.
+	//vector <int> concat(n*k);
+	long long sum = 0;
+	long long maxsum = 0;
+
+	for (int i = 0; i<k ; i++) {
+		for (int j=0; j<n; j++) {
+
+			sum += arr[j];
+			if (sum < 0)	sum = 0;
+			maxsum = max (sum, maxsum);
+		}
+	}
+	int c = 0;
+	int maxi = INT_MIN;
+
+	for (int i = 0; i<n; i++) {
+		if (arr[i] < 0) {
+			c++;
+			maxi = max(maxi, arr[i]);
+		}
+	}
+	if (c == n) 
+		return maxi; 
+
+	return maxsum;
+}

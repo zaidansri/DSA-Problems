@@ -1,0 +1,30 @@
+char kThCharaterOfDecryptedString(string encrypted_str, long long K)
+{
+    //  Write your code here.
+    int n = encrypted_str.length();
+    int current_length = 0;  
+    int i = 0;
+
+    while (i < n) {
+        
+        string substring = "";
+        while (i < n && isalpha(encrypted_str[i])) {
+            substring += encrypted_str[i];
+            i++;
+        }
+        string frequency = "";
+        while (i < n && isdigit(encrypted_str[i])) {
+            frequency += encrypted_str[i];
+            i++;
+        }
+        int count = stoi(frequency);        
+        int expanded_length = substring.length() * count;
+
+        if (current_length + expanded_length >= K) {
+            int position_in_expansion = K - current_length - 1; 
+            return substring[position_in_expansion % substring.length()];
+        }
+        current_length += expanded_length;
+    }
+    return '\0';
+}

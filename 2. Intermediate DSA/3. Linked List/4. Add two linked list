@@ -1,0 +1,31 @@
+Node *addTwoNumbers(Node *num1, Node *num2)
+{
+    // Write your code here.
+    Node *ptr1 = num1, *ptr2 = num2, *dummy = new Node(-1), *curr = dummy;
+    int carry = 0;
+
+    while (ptr1 !=0 || ptr2 != 0) {
+        int sum = carry;
+
+        if (ptr1!= NULL){
+            sum += ptr1-> data;
+            ptr1 = ptr1->next;
+        }
+        if (ptr2!= NULL){
+            sum += ptr2-> data;
+            ptr2 = ptr2->next;
+        }
+        carry = sum /10;
+        int val = sum % 10;
+
+        Node *temp = new Node (val);
+        curr->next = temp;
+        curr = curr-> next;
+
+        if (carry != 0) {
+            Node *temp = new Node (carry);
+            curr->next = temp;
+        }
+    }
+    return dummy-> next;
+}
